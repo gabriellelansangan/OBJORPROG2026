@@ -1,3 +1,4 @@
+{% load static %} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,10 +22,17 @@
         h1 {
             font-size: 67px; 
             text-align: center;
+            color: #fa6f8d;
         }
 
         h2 {
-            font-size: 50px;
+            font-size: 40px;
+            text-align: center;
+            color:#EE4266;
+        }
+
+        h3 {
+            color:#058ED9;
             text-align: center;
         }
 
@@ -32,12 +40,18 @@
             text-align: center;
         }
 
+        label {
+            font-size: 38px; /* Balanced scale for stacked headers */
+            text-align: left;
+            display: block;  /* Ensures it stays on its own line above the box */
+        }
+
         /* The Hero/Welcome panel design */
         .welcome-panel {
             background-color: transparent;
             border: 3px solid #ffc107; /* Gold accent border line */
             border-radius: 24px;       /* Smoothly rounded corners */
-            padding: 20px 20px;
+            padding: 50px 20px;
         }
 
         /* Project Box Styling with Yellow Outline */
@@ -47,7 +61,15 @@
             border-radius: 24px;       /* Matching rounded corners */
             padding: 30px 20px;
             text-align: center;
-            height: 250px;              /* Makes all boxes equal height */
+            height: 450px;              /* Makes all boxes equal height */
+        }
+
+        /* Custom form panel that expands smoothly to fit everything without text overlapping */
+        .contact-panel {
+            background-color: transparent;
+            border: 3px solid #ffc107;
+            border-radius: 24px;
+            padding: 40px;
         }
 
         .flex-container {
@@ -58,6 +80,12 @@
         textarea {
             font-size: 25px;
             text-align: left;
+        }
+
+        /* Fix input placeholder font styling to blend nicely */
+        .form-control::placeholder {
+            font-family: "Jersey 10", sans-serif;
+            opacity: 0.6;
         }
     </style>
 </head>
@@ -71,41 +99,52 @@
             <div class="col-12 text-center">
                 <div class="welcome-panel">
                     <h1 class="mb-0">Welcome to Gabrielle Lansangan's Portfolio!</h1>
+                    <p>Email: annagabriellelansangan@gmail.com</p>
+                    <p>GitHub: gabriellelansangan</p>
+                    <p>LinkedIn: Anna Gabrielle Lansangan</p>
                 </div>
             </div>
         </div>
 
         <div class="row my-5">
             <div class="col-12 text-center">
-                <img src="✩.jpg" class="img-fluid rounded-4 shadow" alt="Portfolio Divider Header" style="max-height: 200px; width: 100%; object-fit: cover;">
+                <img src="{% static 'stars.jpg' %}" alt="Star Banner" style="max-height: 200px; width: 100%; object-fit: cover;">
             </div>
         </div>
 
         <!-- Section 2: Three Boxes Side-by-Side Row -->
-        <!-- mt-5 adds top spacing below the welcome card; g-4 adds spacing between the boxes -->
         <div class="flex-container">
             
             <!-- Box 1 -->
             <div class="col-md-4">
                 <div class="project-box">
-                    <h3 class="text-warning fs-2">BOX_01</h3>
-                    <p>Embedded systems testing parameters and circuit documentation log layouts.</p>
+                    <h2 class="text-warning fs-2">Flight Software & Telemetry Engineer (Internship)</h2>
+                    <h3>DeepSpace Avionics</h3>
+                    <p>- Developed firmware architectures for remote sensor logging sub-systems using Arduino frameworks to monitor critical thermal beds and fluid flow dynamics.</p>
+                    <p>- Implemented live compilation structural test sequences and telemetry logs to guarantee hardware architecture profiles met strict runtime verification requirements.</p>
+                    <p>- Engineered custom logic routines to process real-time environmental input variables, preventing hardware system degradation under simulated atmospheric testing profiles.</p>
                 </div>
             </div>
 
             <!-- Box 2 -->
             <div class="col-md-4">
                 <div class="project-box">
-                    <h3 class="text-warning fs-2">BOX_02</h3>
-                    <p>Hardware architecture profiles and custom core layout specifications.</p>
+                    <h2 class="text-warning fs-2">Embedded Systems Validation Specialist</h2>
+                    <h3>Stellar-Link Robotics</h3>
+                    <p>- Conducted detailed circuit documentation and automated testing parameter configurations for low-power microcontroller deployment.</p>
+                    <p>- Prototyped modular hardware layouts incorporating temperature and liquid flow sensor arrays integrated directly into larger system architectures.</p>
+                    <p>- Leveraged diagnostic console environments to isolate runtime processing faults and optimize power consumption across experimental embedded controllers.</p>
                 </div>
             </div>
 
             <!-- Box 3 -->
             <div class="col-md-4">
                 <div class="project-box">
-                    <h3 class="text-warning fs-2">BOX_03</h3>
-                    <p>System runtime verification and live compilation structural test logs.</p>
+                    <h2 class="text-warning fs-2">Hardware Systems & Firmware Developer</h2>
+                    <h3>Nebula Core Computing</h3>
+                    <p>- Designed and tested custom hardware profiles, ensuring seamless signal communication between microcontrollers and peripheral sensory devices.</p>
+                    <p>- Standardized testing logs and verification scripts to benchmark the reliability of automated component systems against structural design constraints.</p>
+                    <p>- Collaborated on technical documentation regarding system architecture limitations and custom logic solutions for highly constrained hardware environments.</p>
                 </div>
             </div>
 
@@ -113,7 +152,7 @@
 
         <div class="row" style="padding-top: 10px;">
             <div class="col-12 text-center">
-                <img src="✩.jpg" class="img-fluid rounded-4 shadow" alt="Footer Banner Display" style="max-height: 200px; width: 100%; object-fit: cover;">
+                <img src="{% static 'stars.jpg' %}" alt="Star Banner" style="max-height: 200px; width: 100%; object-fit: cover;">
             </div>
         </div>
 
@@ -121,47 +160,59 @@
             <div class="col-12 text-center">
                 <div class="welcome-panel">
                     <h2 class="mb-0">Skills</h2>
-                    <p>lorem ipsum, put skills here</p>
+                    <h3>Core Engineering & Hardware Skills</h3>
+                    <p>Hardware Architecture & Interface Design: Configuring microcontrollers, layout principles, and hardware specifications for systems.</p>
+                    <p>Embedded Systems Testing: Designing physical system testing parameters, circuit documentation layouts, and logging runtime data.</p>
+                    <p>Sensor Integration & Validation: Wiring, calibrating, and processing data streams from temperature and fluid flow measurement components.</p>
+                    <h3>Software & Web Systems Architecture</h3>
+                    <p>Full-Stack Web Development: Building web applications using Python and the Django framework, including structured system design patterns.</p>
+                    <p>Asset & Static File Pipelines: Managing backend asset serving configurations, directory hierarchies, and template engine loading structures.</p>
+                    <p>Responsive Interface Design: Styling layouts using Bootstrap 5, CSS Flexbox grids, and mobile-responsive viewport setups.</p>
+                    <h3>Development Tools & Workflow</h3>
+                    <p>Version Control & Git Workflow: Managing branching strategies, isolating feature development, and resolving code commit histories securely via GitHub.</p>
+                    <p>Local Runtime Environments: Managing backend local development server lifecycles, processing handling networks, and debugging live compilation errors.</p>
+                    <p>Technical Feature Documentation: Writing system runtime verifications, compiling test logs, and managing structured project layouts.</p>
                 </div>
             </div>
         </div>
 
         <div class="row" style="padding-top: 10px;">
             <div class="col-12 text-center">
-                <img src="✩.jpg" class="img-fluid rounded-4 shadow" alt="Footer Banner Display" style="max-height: 200px; width: 100%; object-fit: cover;">
+                <img src="{% static 'stars.jpg' %}" alt="Star Banner" style="max-height: 200px; width: 100%; object-fit: cover;">
             </div>
         </div>
 
+        <h2 class="text-warning fs-2 text-center mb-4">SEND A MESSAGE</h2>
+
         <!-- Section 4: Contact Form -->
-        <div class="row mt-5 g-4">
+        <div class="row mt-3 g-4">
             <div class="col-md-8 mx-auto">
-                <form action="/contact" method="POST" class="project-box text-start p-4">
-                    <h3 class="text-warning fs-2 text-center mb-4">SEND A MESSAGE</h3>
+                <form action="/contact" method="POST" class="contact-panel p-4">
                     
-                    <!-- Email Input Field -->
-                    <div class="mb-3">
-                        <label for="userEmail" class="form-label text-warning">Email Address</label>
-                        <input type="email" name="email" class="form-control" id="userEmail" placeholder="your-email@example.com" required 
-                               style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px;">
+                    <!-- Email Input Field Block (Title on top, box directly underneath) -->
+                    <div class="mb-4">
+                        <label for="userEmail" class="form-label text-warning mb-2">Email Address</label>
+                        <input type="email" name="email" class="form-control form-control-lg" id="userEmail" placeholder="your-email@example.com" required 
+                               style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px; font-size: 22px; width: 100%;">
                     </div>
                     
-                    <!-- Message Textarea Field -->
+                    <!-- Message Textarea Field Block (Title on top, text area directly underneath) -->
                     <div class="mb-4">
-                        <label for="userMessage" class="form-label text-warning">Message</label>
+                        <label for="userMessage" class="form-label text-warning mb-2">Message</label>
                         <textarea name="message" class="form-control" id="userMessage" rows="5" placeholder="Type your mission log here..." required
-                                  style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px; resize: none;"></textarea>
+                                  style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px; resize: none; width: 100%;"></textarea>
                     </div>
                     
                     <!-- Submit Button -->
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-outline-warning px-5 py-2" style="border-radius: 12px; font-weight: bold;">
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-outline-warning px-5 py-2" style="border-radius: 12px; font-weight: bold; font-size: 24px;">
                             LAUNCH MESSAGE
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-        
+
     </div> <!-- End of Main Container -->
 
     <!-- Bootstrap JS Bundle -->
