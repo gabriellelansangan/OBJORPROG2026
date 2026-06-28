@@ -11,7 +11,7 @@
         /* Site-wide core design rules */
         @import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
         body {
-            background-color: #1a1921; /* Your deep dark background */
+            background-color: #0b0b0c; /* Your deep dark background */
             color: #ffffff;
             font-family: "Jersey 10", sans-serif;
             font-weight: 500;
@@ -19,90 +19,152 @@
         }
 
         h1 {
-    font-size: 67px; 
-    text-align: center;
-}
+            font-size: 67px; 
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 50px;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
 
         /* The Hero/Welcome panel design */
         .welcome-panel {
             background-color: transparent;
             border: 3px solid #ffc107; /* Gold accent border line */
             border-radius: 24px;       /* Smoothly rounded corners */
-            padding: 60px 20px;
+            padding: 20px 20px;
         }
 
-        /* Project Card Styling */
-        .project-card {
-            position: relative;
-            border: 3px solid #000000;
-            border-radius: 16px;       /* Matching rounded corners */
-            overflow: hidden;
-            height: 300px;
-            box-shadow: 6px 6px 0px #000000;
+        /* Project Box Styling with Yellow Outline */
+        .project-box {
+            background-color: transparent;
+            border: 3px solid #ffc107; /* Matching yellow outline */
+            border-radius: 24px;       /* Matching rounded corners */
+            padding: 30px 20px;
+            text-align: center;
+            height: 250px;              /* Makes all boxes equal height */
         }
 
-        .project-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;         /* Keeps image from stretching */
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* 50% dark shading screen */
+        .flex-container {
             display: flex;
-            align-items: flex-end;     /* Pushes text to the bottom */
-            padding: 20px;
+            gap: 10px;
         }
 
-        .project-title {
-            color: #ffffff;
-            margin: 0;
-            text-size-adjust: 60px;
+        textarea {
+            font-size: 25px;
+            text-align: left;
         }
     </style>
 </head>
 <body>
 
-    <!-- Main Container -->
+    <!-- Main Container: Holds everything on the page -->
     <div class="container my-5">
         
-        <!-- Section 1: Hero Welcome Box -->
+        <!-- Section 1: Hero Welcome Box Row -->
         <div class="row mb-5">
-            <div class="col-lg-8 mx-auto text-center">
+            <div class="col-12 text-center">
                 <div class="welcome-panel">
-                    <h1 class="display-5 fw-bold mb-3">Welcome to Gabrielle Lansangan's Portfolio!</h1>
+                    <h1 class="mb-0">Welcome to Gabrielle Lansangan's Portfolio!</h1>
                 </div>
             </div>
         </div>
 
-        <!-- Section 2: Projects Grid (Stacked completely underneath) -->
-        <div class="row">
-            <div class="col-lg-6 mx-auto">
-                
-                <!-- Project Section Title -->
-                <h3 class="mb-4 text-center text-muted text-uppercase tracking-wider">Project Showcases</h3>
+        <div class="row my-5">
+            <div class="col-12 text-center">
+                <img src="✩.jpg" class="img-fluid rounded-4 shadow" alt="Portfolio Divider Header" style="max-height: 200px; width: 100%; object-fit: cover;">
+            </div>
+        </div>
 
-                <!-- Project Item 1 -->
-                <div class="project-card mb-4">
-                    <!-- Replace with your actual project image path later -->
-                    <img src="Header [Theme 3_4].jpg" class="project-img" alt="Divider">
-                    <div class="project-overlay">
+        <!-- Section 2: Three Boxes Side-by-Side Row -->
+        <!-- mt-5 adds top spacing below the welcome card; g-4 adds spacing between the boxes -->
+        <div class="flex-container">
+            
+            <!-- Box 1 -->
+            <div class="col-md-4">
+                <div class="project-box">
+                    <h3 class="text-warning fs-2">BOX_01</h3>
+                    <p>Embedded systems testing parameters and circuit documentation log layouts.</p>
+                </div>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="col-md-4">
+                <div class="project-box">
+                    <h3 class="text-warning fs-2">BOX_02</h3>
+                    <p>Hardware architecture profiles and custom core layout specifications.</p>
+                </div>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="col-md-4">
+                <div class="project-box">
+                    <h3 class="text-warning fs-2">BOX_03</h3>
+                    <p>System runtime verification and live compilation structural test logs.</p>
+                </div>
+            </div>
+
+        </div> <!-- End of Section 2 Row -->
+
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-12 text-center">
+                <img src="✩.jpg" class="img-fluid rounded-4 shadow" alt="Footer Banner Display" style="max-height: 200px; width: 100%; object-fit: cover;">
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <div class="welcome-panel">
+                    <h2 class="mb-0">Skills</h2>
+                    <p>lorem ipsum, put skills here</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-12 text-center">
+                <img src="✩.jpg" class="img-fluid rounded-4 shadow" alt="Footer Banner Display" style="max-height: 200px; width: 100%; object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Section 4: Contact Form -->
+        <div class="row mt-5 g-4">
+            <div class="col-md-8 mx-auto">
+                <form action="/contact" method="POST" class="project-box text-start p-4">
+                    <h3 class="text-warning fs-2 text-center mb-4">SEND A MESSAGE</h3>
+                    
+                    <!-- Email Input Field -->
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label text-warning">Email Address</label>
+                        <input type="email" name="email" class="form-control" id="userEmail" placeholder="your-email@example.com" required 
+                               style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px;">
                     </div>
-                </div>
-
-                <!-- You can easily add more project cards here and they will stack cleanly -->
-
+                    
+                    <!-- Message Textarea Field -->
+                    <div class="mb-4">
+                        <label for="userMessage" class="form-label text-warning">Message</label>
+                        <textarea name="message" class="form-control" id="userMessage" rows="5" placeholder="Type your mission log here..." required
+                                  style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px; resize: none;"></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-warning px-5 py-2" style="border-radius: 12px; font-weight: bold;">
+                            LAUNCH MESSAGE
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+        
+    </div> <!-- End of Main Container -->
 
-    </div>
-
-    <!-- Bootstrap JS Bundle (Optional, but good to have) -->
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
