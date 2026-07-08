@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabrielle Lansangan's Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+        body {
+            background-color: #0b0b0c; 
+            color: #ffffff;
+            font-family: "Jersey 10", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            padding: 20px 20px;
+        }
+
+        h1 {
+            font-size: 90px; 
+            text-align: center;
+            color: #fa6f8d;
+            line-height: 0.9;
+        }
+
+        p {
+            font-size: 40px;
+            text-align: center;
+        }
+
+        a {
+            color: #058ED9;
+            text-decoration: none;
+            font-size: 30px;
+            line-height: 0.9;
+            transition: color 0.2s ease-in-out;
+            display:inline-block;
+        }
+
+        a:hover {
+            color: #fa6f8d;
+            text-decoration: none;
+        }
+
+        .project-box {
+            background-color: transparent;
+            border: 3px solid #ffc107; 
+            border-radius: 24px;       
+            padding: 30px 20px;
+            text-align: center;
+            height: 100px; 
+            width: 250px;
+            display: flex;  
+            justify-content: center;
+            align-items: center;         
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center; 
+        }
+    </style>
+</head>
+<div class = "container">
+    <h1>{{ project.project_name }}</h1>
+    <hr>
+    <p><strong>Description:</strong> {{ project.description }}</p>
+    <p><strong>Technologies used:</strong> {{ project.technology_used }}</p>
+
+    {% if project.link %}
+        <p><a href="{{ project.link }}" target="_blank">View Live Project</a></p>
+    {% endif %}
+    <p><a href = "{% url 'home' %}">Back to Portfolio</a></p> 
+</div>
+

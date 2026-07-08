@@ -1,11 +1,21 @@
-from django.shortcuts import render, redirect 
-from .models import Project 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Project, PersonalInformation
 from django.contrib import messages
 from .models import ContactMessage
 
 def home_view(request):
-    all_projects = Project.objects.all()
-    return render(request, 'index.html', {'projects': all_projects})
+    info = PersonalInformation.objects.first()
+    projects = Project.objects.all()
+
+    context = {
+        'info' : info,
+        'projects' : projects
+    }
+    return render(request, 'index.html', context)
+
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'project_detail.html', {'project' : project})
 
 def contact_view(path_request):
     if path_request.method == 'POST':

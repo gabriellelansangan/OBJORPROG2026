@@ -18,15 +18,17 @@
         }
 
         h1 {
-            font-size: 67px; 
+            font-size: 80px; 
             text-align: center;
             color: #fa6f8d;
+            line-height: 0.9;
         }
 
         h2 {
-            font-size: 40px;
+            font-size: 67px;
             text-align: center;
             color:#EE4266;
+            line-height: 0.7;
         }
 
         h3 {
@@ -48,7 +50,7 @@
             background-color: transparent;
             border: 3px solid #ffc107; 
             border-radius: 24px;       
-            padding: 50px 20px;
+            padding: 30px 20px;
         }
 
         .project-box {
@@ -57,7 +59,31 @@
             border-radius: 24px;       
             padding: 30px 20px;
             text-align: center;
-            height: 450px;              
+            height: 100px; 
+            width: 250px;
+            display: flex;  
+            justify-content: center;
+            align-items: center;         
+        }
+
+        .project-link {
+            color: #fa6f8d;
+            text-decoration: none;
+            font-size: 67px;
+            line-height: 0.9;
+            transition: color 0.2s ease-in-out;
+            display:inline-block;
+        }
+
+        .project-link:hover {
+            color: #058ED9;
+            text-decoration: none;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center; 
         }
 
         .contact-panel {
@@ -65,11 +91,6 @@
             border: 3px solid #ffc107;
             border-radius: 24px;
             padding: 40px;
-        }
-
-        .flex-container {
-            display: flex;
-            gap: 10px;
         }
 
         textarea {
@@ -90,10 +111,10 @@
         <div class="row mb-5">
             <div class="col-12 text-center">
                 <div class="welcome-panel">
-                    <h1 class="mb-0">Welcome to Gabrielle Lansangan's Portfolio!</h1>
-                    <p>Email: annagabriellelansangan@gmail.com</p>
-                    <p>GitHub: gabriellelansangan</p>
-                    <p>LinkedIn: Anna Gabrielle Lansangan</p>
+                    <h1 class="mb-0">Welcome to {{ info.first_name }} {{info.middle_name}} {{info.last_name}}'s Portfolio!</h1>
+                    <p class ="fs-4">{{ info.summary }}</p>
+                    <p>Email: {{ info.email }} | Contact: {{ info.contact_number }}</p>
+                    <p>Location: {{ info.address }}</p>
                 </div>
             </div>
         </div>
@@ -104,38 +125,25 @@
             </div>
         </div>
 
+        <h1>My Projects</h1>
+
         <div class="flex-container">
             
-            <div class="col-md-4">
-                <div class="project-box">
-                    <h2 class="text-warning fs-2">Flight Software & Telemetry Engineer (Internship)</h2>
-                    <h3>DeepSpace Avionics</h3>
-                    <p>- Developed firmware architectures for remote sensor logging sub-systems using Arduino frameworks to monitor critical thermal beds and fluid flow dynamics.</p>
-                    <p>- Implemented live compilation structural test sequences and telemetry logs to guarantee hardware architecture profiles met strict runtime verification requirements.</p>
-                    <p>- Engineered custom logic routines to process real-time environmental input variables, preventing hardware system degradation under simulated atmospheric testing profiles.</p>
+            {% for project in projects %}
+                <div class="col-md-4">
+                    <div class="project-box">
+                        <h2>
+                            <a href="{% url 'project_detail' pk=project.pk %}" class="project-link">
+                                {{ project.project_name }}
+                            </a>
+                        </h2>
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="project-box">
-                    <h2 class="text-warning fs-2">Embedded Systems Validation Specialist</h2>
-                    <h3>Stellar-Link Robotics</h3>
-                    <p>- Conducted detailed circuit documentation and automated testing parameter configurations for low-power microcontroller deployment.</p>
-                    <p>- Prototyped modular hardware layouts incorporating temperature and liquid flow sensor arrays integrated directly into larger system architectures.</p>
-                    <p>- Leveraged diagnostic console environments to isolate runtime processing faults and optimize power consumption across experimental embedded controllers.</p>
+            {% empty %}
+                <div class="col-12 text-center">
+                    <p> No projects found. Kindly add your projects in the Django Admin.</p>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="project-box">
-                    <h2 class="text-warning fs-2">Hardware Systems & Firmware Developer</h2>
-                    <h3>Nebula Core Computing</h3>
-                    <p>- Designed and tested custom hardware profiles, ensuring seamless signal communication between microcontrollers and peripheral sensory devices.</p>
-                    <p>- Standardized testing logs and verification scripts to benchmark the reliability of automated component systems against structural design constraints.</p>
-                    <p>- Collaborated on technical documentation regarding system architecture limitations and custom logic solutions for highly constrained hardware environments.</p>
-                </div>
-            </div>
-
+            {% endfor %}
         </div> 
 
         <div class="row" style="padding-top: 10px;">
