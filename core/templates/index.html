@@ -53,20 +53,20 @@
             padding: 30px 20px;
         }
 
-        .project-box {
+        .project-box, .navigation-box {
             background-color: transparent;
             border: 3px solid #ffc107; 
             border-radius: 24px;       
             padding: 30px 20px;
             text-align: center;
             height: 100px; 
-            width: 250px;
+            width: 300px;
             display: flex;  
             justify-content: center;
             align-items: center;         
         }
 
-        .project-link {
+        .project-link, .navigation-link {
             color: #fa6f8d;
             text-decoration: none;
             font-size: 67px;
@@ -75,7 +75,7 @@
             display:inline-block;
         }
 
-        .project-link:hover {
+        .project-link:hover, .navigation-link:hover {
             color: #058ED9;
             text-decoration: none;
         }
@@ -178,34 +178,44 @@
             </div>
         </div>
 
-        <h2 class="text-warning fs-2 text-center mb-4">SEND A MESSAGE</h2>
+        <h2>Navigate</h2>
+            <div class="flex-container row justify-content-center g-4">
+                <div class="col-md-4">
+                    <div class="navigation-box text-center p-3">
+                        <h2>
+                            <a href="{% url 'create_project' %}" class="navigation-link">
+                                Add New Project
+                            </a>
+                        </h2>
+                    </div>
+                </div>
 
-        <div class="row mt-3 g-4">
-            <div class="col-md-8 mx-auto">
-                <form action="/contact" method="POST" class="contact-panel p-4">
-                    {% csrf_token %}
-                    
-                    <div class="mb-4">
-                        <label for="userEmail" class="form-label text-warning mb-2">Email Address</label>
-                        <input type="email" name="email" class="form-control form-control-lg" id="userEmail" placeholder="your-email@example.com" required 
-                               style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px; font-size: 22px; width: 100%;">
+                <div class="col-md-4">
+                    <div class="navigation-box text-center p-3">
+                        <h2>
+                            <a href="{% url 'contact' %}" class="navigation-link">
+                                Contact / Inquiry
+                            </a>
+                        </h2>
                     </div>
-                    
-                    <div class="mb-4">
-                        <label for="userMessage" class="form-label text-warning mb-2">Message</label>
-                        <textarea name="message" class="form-control" id="userMessage" rows="5" placeholder="Type your mission log here..." required
-                                  style="background-color: transparent; border: 2px solid #ffc107; color: #ffffff; border-radius: 12px; resize: none; width: 100%;"></textarea>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="navigation-box text-center p-3">
+                        <h2>
+                            <a href="{% url 'testimony_list' %}" class="navigation-link">
+                                Testimonials
+                            </a>
+                        </h2>
                     </div>
-                    
-                    <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-outline-warning px-5 py-2" style="border-radius: 12px; font-weight: bold; font-size: 24px;">
-                            LAUNCH MESSAGE
-                        </button>
-                    </div>
-                </form>
+                </div>
+            </div>
+
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-12 text-center">
+                <img src="{% static 'stars.jpg' %}" alt="Star Banner" style="max-height: 200px; width: 100%; object-fit: cover;">
             </div>
         </div>
-
     </div> 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/js/bootstrap.bundle.min.js"></script>
