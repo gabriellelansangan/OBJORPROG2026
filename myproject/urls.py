@@ -13,4 +13,5 @@ urlpatterns = [
     path('testimonies/', views.TestimonyListView.as_view(), name='testimony_list'),
     path('testimonies/add/', views.create_testimony, name='create_testimony'),
     path('testimonies/<int:pk>/', views.testimony_detail, name='testimony_detail'),
+    path('contact/success/',views.contact_success, name='contact_success'),
 ]
