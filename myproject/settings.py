@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'myproject.urls'
 
 TEMPLATES = [
     {
@@ -116,3 +116,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+LOGIN_URL = 'login'
