@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<h1>Tech Stacks</h1>
+<a class="btn" href="{% url 'techstack_create' %}">+ Create Tech Stack</a>
+
+<table>
+  <thead>
+    <tr><th>Tech Stack Name</th><th>Projects It Was Used In</th><th>Date Added</th></tr>
+  </thead>
+  <tbody>
+  {% for stack in tech_stacks %}
+    <tr>
+      <td>{{ stack.name }}</td>
+      <td>{{ stack.projects.all|join:", " }}</td>
+      <td>{{ stack.created_at|date:"M d, Y" }}</td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="3">No tech stacks yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

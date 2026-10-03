@@ -1,0 +1,23 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<h1>Projects</h1>
+<a class="btn" href="{% url 'project_create' %}">+ Create Project</a>
+
+<table>
+  <thead>
+    <tr><th>Project Name</th><th>Description</th><th>Tech Stack</th><th>Link</th></tr>
+  </thead>
+  <tbody>
+  {% for project in projects %}
+    <tr>
+      <td>{{ project.name }}</td>
+      <td>{{ project.description|truncatechars:50 }}</td>
+      <td>{{ project.tech_stacks.all|join:", " }}</td>
+      <td><a href="{{ project.link }}" target="_blank" rel="noopener">{{ project.link }}</a></td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="4">No projects yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
