@@ -1,10 +1,100 @@
 {% extends 'dashboard/base.html' %}
 {% block title %}Admin Sign In{% endblock %}
 {% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+body {
+    background-color: #0b0b0c;
+    color: #ffffff;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 90px;
+    text-align: center;
+    color: #fa6f8d;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.signin-panel {
+    background-color: transparent;
+    border: 2px solid #ffc107;
+    border-radius: 16px;
+    padding: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;          /* centers the panel */
+}
+
+.signin-panel label {
+    color: #ffc107;
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.signin-panel input {
+    background-color: transparent;
+    border: 2px solid #ffc107;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 22px;
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.signin-panel input:focus {
+    outline: none;
+    border-color: #fa6f8d;
+}
+
+.signin-panel p {
+    margin: 0;
+}
+
+.signin-panel .errorlist {
+    color: #fa6f8d;
+    font-size: 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+    text-align: center;
+}
+
+.signin-btn {
+    background-color: transparent;
+    color: #ffc107;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 8px 48px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.signin-btn:hover {
+    background-color: #ffc107;
+    color: #0b0b0c;
+}
+</style>
+
 <h1>Admin Sign In</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn">Sign in</button>
+
+<form method="post" class="signin-panel">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div style="text-align: center; margin-top: 1rem;">
+        <button type="submit" class="signin-btn">SIGN IN</button>
+    </div>
 </form>
 {% endblock %}
