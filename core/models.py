@@ -1,13 +1,34 @@
 from django.db import models
 
+class TechStack(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name 
+
 class Project(models.Model):
     project_name = models.CharField(max_length=200)
     description = models.TextField()
-    technology_used = models.CharField(max_length=200)
-    link = models.URLField(blank=True, null=True)
+    tech_stacks = models.ManyToManyField(TechStack, related_name='projects')
+    link = models.URLField(blank=True, null=True, max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.project_name
+    
+    @property
+    def truncated_description(self):
+        if len(self.description) > 50:
+            return self.description[:50] + "..."
+        return self.description
+    
+    @property
+    def tech_stack_list(self):
+        return ", ".join([ts.name for ts in self.tech_stacks.all])
     
 class PersonalInformation(models.Model):
     first_name = models.CharField(max_length=100)
@@ -46,3 +67,4 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"Message from {self.email} at {self.timestamp.strftime('%Y-%m-%d %H:%M')}"
+    

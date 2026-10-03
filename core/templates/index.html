@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gabrielle Lansangan's Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
@@ -53,14 +53,41 @@
             padding: 30px 20px;
         }
 
-        .project-box, .navigation-box {
+        .project-box {
+            background-color: transparent;
+            border: 3px solid #ffc107; 
+            border-radius: 24px;       
+            padding: 10px 20px;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;  
+            justify-content: center;
+            align-items: center;     
+            padding-top: 0.75rem;   
+            min-height: 300px; 
+            box-sizing: border-box;
+        }
+
+        .project-box h2 {
+            margin-top: 10px;
+            margin-bottom: 0.25rem;   
+            font-size: 60px;
+            line-height: 1;
+        }
+
+        .project-box p {
+            margin-top: 0;           
+        }
+
+        .navigation-box {
             background-color: transparent;
             border: 3px solid #ffc107; 
             border-radius: 24px;       
             padding: 30px 20px;
             text-align: center;
-            height: 100px; 
-            width: 300px;
+            height: 200px; 
+            width: 350px;
             display: flex;  
             justify-content: center;
             align-items: center;         
@@ -93,7 +120,7 @@
             padding: 40px;
         }
 
-        textarea {
+        .textarea {
             font-size: 25px;
             text-align: left;
         }
@@ -102,6 +129,7 @@
             font-family: "Jersey 10", sans-serif;
             opacity: 0.6;
         }
+
     </style>
 </head>
 <body>
@@ -112,7 +140,7 @@
             <div class="col-12 text-center">
                 <div class="welcome-panel">
                     <h1 class="mb-0">Welcome to {{ info.first_name }} {{info.middle_name}} {{info.last_name}}'s Portfolio!</h1>
-                    <p class ="fs-4">{{ info.summary }}</p>
+                    <p class ="fs-5">{{ info.summary }}</p>
                     <p>Email: {{ info.email }} | Contact: {{ info.contact_number }}</p>
                     <p>Location: {{ info.address }}</p>
                 </div>
@@ -127,23 +155,25 @@
 
         <h1>My Projects</h1>
 
-        <div class="flex-container">
-            
-            {% for project in projects %}
-                <div class="col-md-4">
-                    <div class="project-box">
-                        <h2>
-                            <a href="{% url 'project_detail' pk=project.pk %}" class="project-link">
-                                {{ project.project_name }}
-                            </a>
-                        </h2>
+        <div class="row g-4 justify-content-center">
+                {% for project in projects %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="project-box">
+                            <h2>
+                                <a href="{% url 'project_detail' pk=project.pk %}" class="project-link">
+                                    {{ project.project_name }}
+                                </a>
+                            </h2>
+                            <p>{{ project.description }}</p>
+                            <p>Tech: {{ project.tech_stacks.all|join:", " }}</p>
+                            <a href="{{ project.link }}" target="_blank" rel="noopener">View project</a>
+                        </div>
                     </div>
-                </div>
-            {% empty %}
-                <div class="col-12 text-center">
-                    <p> No projects found. Kindly add your projects in the Django Admin.</p>
-                </div>
-            {% endfor %}
+                {% empty %}
+                    <div class="col-12 text-center">
+                        <p>No projects found. Kindly add your projects in the dashboard.</p>
+                    </div>
+                {% endfor %}
         </div> 
 
         <div class="row" style="padding-top: 10px;">
@@ -183,7 +213,7 @@
                 <div class="col-md-4">
                     <div class="navigation-box text-center p-3">
                         <h2>
-                            <a href="{% url 'create_project' %}" class="navigation-link">
+                            <a href="{% url 'project_create' %}" class="navigation-link">
                                 Add New Project
                             </a>
                         </h2>
@@ -218,6 +248,6 @@
         </div>
     </div> 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
