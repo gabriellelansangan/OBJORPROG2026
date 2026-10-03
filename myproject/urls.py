@@ -1,7 +1,7 @@
 import os
 import sys
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -19,8 +19,9 @@ urlpatterns = [
     path('testimonies/add/', views.create_testimony, name='create_testimony'),
     path('testimonies/<int:pk>/', views.testimony_detail, name='testimony_detail'),
     path('login/', views.AdminLoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('dashboard/project/create/', views.create_project, name='create_project'),
-    path('dashboard/tech-stack/create/', views.create_tech_stack, name='create_tech_stack'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('dashboard/', views.ProjectListView.as_view(), name='project_list'),
+    path('dashboard/project/new/', views.ProjectCreateView.as_view(), name='project_create'),
+    path('dashboard/tech-stacks/', views.TechStackListView.as_view(), name='techstack_list'),
+    path('dashboard/tech-stacks/new/', views.TechStackCreateView.as_view(), name='techstack_create'),
 ]
