@@ -1,10 +1,114 @@
 {% extends 'dashboard/base.html' %}
+
+{% block title %}Create Project{% endblock %}
+
 {% block content %}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+.project-form-panel {
+    background-color: transparent;
+    border: 2px solid #ffc107;
+    border-radius: 16px;
+    padding: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.project-form-panel p {
+    margin: 0;
+}
+
+.project-form-panel label {
+    color: #ffc107;
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.project-form-panel input:not([type="radio"]):not([type="checkbox"]),
+.project-form-panel textarea {
+    background-color: transparent;
+    border: 2px solid #ffc107;
+    color: #ffffff;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 22px;
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.project-form-panel input:focus,
+.project-form-panel textarea:focus {
+    outline: none;
+    border-color: #fa6f8d;
+}
+
+/* Tech stack radio options */
+.project-form-panel div div label {
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.project-form-panel input[type="radio"] {
+    accent-color: #fa6f8d;
+    margin-right: 10px;
+    transform: scale(1.3);
+}
+
+.project-form-panel div div {
+    margin-bottom: 4px;
+}
+
+/* Validation errors */
+.project-form-panel .errorlist {
+    color: #fa6f8d;
+    font-size: 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 8px;
+}
+
+.save-btn {
+    background-color: transparent;
+    color: #ffc107;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 8px 48px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.save-btn:hover {
+    background-color: #ffc107;
+    color: #0b0b0c;
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+</style>
+
 <h1>Create Project</h1>
-<form method="post" novalidate>
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn">Save</button>
-  <a href="{% url 'project_list' %}">Cancel</a>
+
+<form method="post" novalidate class="project-form-panel">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div style="text-align: center; margin-top: 1.5rem;">
+        <button type="submit" class="save-btn">SAVE PROJECT</button>
+    </div>
 </form>
+
+<div class="back-link">
+    <a href="{% url 'project_list' %}">Back to Projects</a>
+</div>
 {% endblock %}

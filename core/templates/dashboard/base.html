@@ -1,24 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>{% block title %}Dashboard{% endblock %}</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
-    nav a, nav button { margin-right: 1rem; }
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { border: 1px solid #ccc; padding: .5rem; text-align: left; }
-    th { background: #f3f3f3; }
-    .errorlist { color: #b00020; padding-left: 1rem; }
-    .btn { display: inline-block; padding: .4rem .8rem; background: #2563eb; color: #fff; text-decoration: none; border: 0; border-radius: 4px; cursor: pointer; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Dashboard{% endblock %}</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+body {
+    background-color: #0b0b0c;
+    color: #ffffff;
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 1rem;
+}
+
+h1 {
+    font-size: 80px;
+    text-align: center;
+    color: #fa6f8d;
+    line-height: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: #058ED9;
+    text-decoration: none;
+    font-size: 28px;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: #fa6f8d;
+}
+
+/* Navigation bar */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border: 2px solid #ffc107;
+    border-radius: 16px;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+nav a {
+    font-size: 36px;
+    line-height: 0.9;
+}
+
+nav form {
+    display: inline;
+    margin: 0;
+}
+
+nav button {
+    background-color: transparent;
+    color: #fa6f8d;
+    border: 0;
+    font-family: inherit;
+    font-size: 36px;
+    line-height: 0.9;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+nav button:hover {
+    color: #058ED9;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 1.5rem;
+    border: 2px solid #ffc107;
+    border-radius: 16px;
+    overflow: hidden;       /* keeps the rounded corners clean */
+}
+
+th, td {
+    border-bottom: 1px solid #ffc107;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 26px;
+}
+
+tr:last-child td {
+    border-bottom: 0;
+}
+
+th {
+    background: transparent;
+    color: #ffc107;
+    font-size: 30px;
+}
+
+td a {
+    font-size: 26px;
+    word-break: break-all;  /* long links won't stretch the table */
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.4rem 1.5rem;
+    background-color: transparent;
+    color: #ffc107;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #ffc107;
+    color: #0b0b0c;
+}
+
+/* Error messages */
+.errorlist {
+    color: #fa6f8d;
+    font-size: 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+}
+
+/* Create forms (add class="form-panel" to the <form>) */
+.form-panel {
+    border: 2px solid #ffc107;
+    border-radius: 16px;
+    padding: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.form-panel label {
+    color: #ffc107;
+    font-size: 28px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-panel input:not([type="radio"]):not([type="checkbox"]),
+.form-panel textarea,
+.form-panel select {
+    background-color: transparent;
+    border: 2px solid #ffc107;
+    color: #ffffff;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 22px;
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.form-panel input:focus,
+.form-panel textarea:focus {
+    outline: none;
+    border-color: #fa6f8d;
+}
+
+.form-panel input[type="radio"] {
+    accent-color: #fa6f8d;
+    margin-right: 8px;
+}
+
+.form-panel p {
+    margin: 0;
+}
+</style>
 </head>
 <body>
   {% if user.is_authenticated %}
   <nav>
+    <a href="{% url 'home' %}">Portfolio</a>
     <a href="{% url 'project_list' %}">Projects</a>
     <a href="{% url 'techstack_list' %}">Tech Stacks</a>
-    <form method="post" action="{% url 'logout' %}" style="display:inline">
+    <form method="post" action="{% url 'logout' %}">
       {% csrf_token %}<button type="submit">Sign out</button>
     </form>
   </nav>
